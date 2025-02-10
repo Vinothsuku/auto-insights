@@ -11,7 +11,6 @@ import streamlit as st
 import time
 import matplotlib.pyplot as plt
 
-
 @st.cache_data(show_spinner=False)
 def remove_null(df, target_variable):
     df.dropna(subset = [target_variable], inplace=True)
@@ -151,14 +150,11 @@ def spear_C(df):
   sp_con = hc.ward(sp)
   dendro = hc.dendrogram(sp_con, labels=df.columns, leaf_rotation=90)
   st.pyplot()
-  #plt.show()
-  #return sp
 
 @st.cache_data(show_spinner=False)
 def pearman_C(df):
   df_numeric = df.select_dtypes(include=['number'])
   c_matrix = df_numeric.corr()
-  #corr_matrix[target_variable].sort_values(ascending=False)
   fig,ax= plt.subplots()
   fig.set_size_inches(30,20)
   sn.heatmap(c_matrix, square=True,annot=True)
